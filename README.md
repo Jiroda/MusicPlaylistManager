@@ -13,6 +13,7 @@
   This would cut short the complexity from O(N) to O(1) (N is the total number of playlists) when it comes to fetching the songs based on userId and playlistId 
   and another O(1) to remove and add/update values in the map.
 * Once all the changes are applied, reconversion from hashmap to JSON will take O(K) complexity where K is the number of entries in the hashmap.
+* The source code and the tests are available for this project under https://github.com/Jiroda/MusicPlaylistManager/tree/feature/src
 
 ####  How to run the application
 * Download the project.zip file found here https://github.com/Jiroda/MusicPlaylistManager/blob/feature/project.zip
