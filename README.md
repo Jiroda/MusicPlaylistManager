@@ -29,24 +29,28 @@
 ![how to run jar](https://github.com/Jiroda/MusicPlaylistManager/blob/feature/run-jar.png)
 
 ### Sacalability Discussion
-* If change file will grow very large in the future or if our library has become so big that we need to store it in something other than an in memory hashmap.
-  * I would consider storing the data inside a document based Database such as MongoDB or Cassandra.
-  * My reasoning behind this suggestion is that, based on the data, it is not heavily structured that it needs to fit a relational model/schema, so SQL databases will not 
-    be a good option. 
-  * The query time needs to be fast eliminating unnecessary JOINs will definitely prove to be useful when it comes to latency.
+* If the change file grows very large in the future / our mixtape libray has become so big.
+
+  * I would consider storing the data inside a document based Database such as MongoDB or Cassandra rather than leaving it inside an in-memory hashmap.
+  * My reasoning behind this suggestion is that, the data in itself is not heavily structured that it needs to fit a relational model/schema, 
+    SQL databases is not always needed.
+  * The query time needs to be fast and eliminating unnecessary JOINs will definitely prove to be useful when it comes to data updates and retrievals.
   * MongoDB and Cassandra are shown to be highly efficient in terms of retrieval and updates of bulk data especially when it comes to unstructured data (i.e, JSON docs)
 
 * If we scale this application to million users concurrently hitting the system and are continously making changes to the playlists.
+
   * I would favor availability and partition tolerance from the CAP theorem and settle with eventual consistency.
-  * Horizontal scaling will be prefered as opposed to vertical scaling. Replicating the data will be needed inorder to ensure high availability.
-  * The ideal protocol would be HTTP and the CRUD operations can be built as RESTful apis behind an API gateway which could then be load balanced.
-  * Usage of a message queue such as Apache Kafka or RabbitMQ could be considered for a Publisher Subscriber model.
-  * Consistent hashing is a must in order to service requests in a distributed way.
-  * Note - The unique identifier in this system will be the userId under which there could be 1 to many playlistIds which inturn could have 1 to many songIds.
-    Going by the userId could make the data retrieval much faster.
+  * Horizontal scaling / sharding will be prefered as opposed to vertical scaling. 
+    Replicating the data across multiple hosts will can be considered inorder to ensure high availability.
+  * The ideal protocol would be HTTP and the CRUD operations on the playlists can be built as RESTful apis behind an API gateway which could then be load balanced.
   * REST resources will make access to data much more efficient, PUT POST and DELETE methods could be leveraged.
   * Each operation needs to be transactional to ensure the data is persisted correctly.
+  * The unique identifier in this change file will be the playlistIds which inturn could have 1 to many songIds. Each playlist id is associated to an userId
+    Going by the userId and then by playlistId could make data retrieval and updates much faster.
+  * Usage of a message queue such as Apache Kafka or RabbitMQ could be considered for a Publisher-Subscriber model in case of a stream of changes hitting the system.
+  * Consistent hashing is a must in order to service requests in a distributed way.
 
-* If we need the system to be highly secure
+* If we need the application to be highly secure
+ 
   * I would consider an AuthZ and AuthN for added security. OAuth is wellknow and we can whitelist clients based on client Ids to avoid unauthorized access.
     The above features could very well be built in the REST web service layer
