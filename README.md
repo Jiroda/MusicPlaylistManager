@@ -35,7 +35,7 @@
 ```
 ![how to run jar](https://github.com/Jiroda/MusicPlaylistManager/blob/feature/run-jar.png)
 
-### Sacalability Discussion
+### Scalability Discussion
 * If the change file grows very large in the future / our mixtape libray has become so big.
 
   * I would consider storing the data inside a document based Database such as MongoDB or Cassandra rather than leaving it inside an in-memory hashmap.
