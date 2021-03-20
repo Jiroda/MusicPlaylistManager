@@ -41,7 +41,7 @@
 
   * I would favor availability and partition tolerance from the CAP theorem and settle with eventual consistency.
   * Horizontal scaling / sharding will be prefered as opposed to vertical scaling. 
-    Replicating the data across multiple hosts will can be considered inorder to ensure high availability.
+    Replicating the data across multiple hosts can be considered inorder to ensure high availability.
   * The ideal protocol would be HTTP and the CRUD operations on the playlists can be built as RESTful apis behind an API gateway which could then be load balanced.
   * REST resources will make access to data much more efficient, PUT POST and DELETE methods could be leveraged.
   * Each operation needs to be transactional to ensure the data is persisted correctly.
