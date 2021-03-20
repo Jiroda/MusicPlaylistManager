@@ -7,6 +7,13 @@
 * I have assumed that the change file is in JSON format and contains only the changes made to the playlists.
 * I have provided a sample change.json file containing addition, removal and update to the playlists. 
 * In the case of deletion, the song_ids JSON array will be empty.
+  ```javascript
+      {
+        "id" : "3",
+        "user_id" : "7",
+        "song_ids" : []
+      },
+  ```
 * In the case of update the song ids present in the change file will represent the final state of the playlist.
 * In order to avoid iterating through the Arraylist of playlists for each change to a playlist present in the changes file, 
   I have decided to go with a HashMap with the playlistId and UserId as a complex key and the List of songs as the value. 
