@@ -4,9 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.google.gson.JsonSyntaxException;
-import com.highspot.musicplaylistmanager.exceptions.ExtractMusicDataFromFileException;
-import com.highspot.musicplaylistmanager.exceptions.ExtractPlaylistChangesFromFileException;
-import com.highspot.musicplaylistmanager.exceptions.WriteToFileException;
+import com.highspot.musicplaylistmanager.exception.ExtractMusicDataFromFileException;
+import com.highspot.musicplaylistmanager.exception.ExtractPlaylistChangesFromFileException;
+import com.highspot.musicplaylistmanager.exception.WriteToFileException;
 import com.highspot.musicplaylistmanager.model.MusicData;
 import com.highspot.musicplaylistmanager.model.PlayListChange;
 import com.highspot.musicplaylistmanager.model.Playlist;

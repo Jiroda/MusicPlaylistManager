@@ -1,4 +1,4 @@
-package com.highspot.musicplaylistmanager.exceptions;
+package com.highspot.musicplaylistmanager.exception;
 
 public class InvalidPlaylistException extends Exception{
     private static final long serialVersionUID = 1L;

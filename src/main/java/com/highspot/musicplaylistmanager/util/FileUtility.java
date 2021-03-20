@@ -12,9 +12,9 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonSyntaxException;
 import com.google.gson.TypeAdapter;
 import com.google.gson.stream.JsonReader;
-import com.highspot.musicplaylistmanager.exceptions.ExtractMusicDataFromFileException;
-import com.highspot.musicplaylistmanager.exceptions.ExtractPlaylistChangesFromFileException;
-import com.highspot.musicplaylistmanager.exceptions.WriteToFileException;
+import com.highspot.musicplaylistmanager.exception.ExtractMusicDataFromFileException;
+import com.highspot.musicplaylistmanager.exception.ExtractPlaylistChangesFromFileException;
+import com.highspot.musicplaylistmanager.exception.WriteToFileException;
 import com.highspot.musicplaylistmanager.model.MusicData;
 import com.highspot.musicplaylistmanager.model.PlayListChange;
 

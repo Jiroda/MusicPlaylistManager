@@ -1,6 +1,6 @@
 package com.highspot.musicplaylistmanager.service;
 
-import com.highspot.musicplaylistmanager.exceptions.InvalidPlaylistException;
+import com.highspot.musicplaylistmanager.exception.InvalidPlaylistException;
 import com.highspot.musicplaylistmanager.model.MusicData;
 import com.highspot.musicplaylistmanager.model.Playlist;
 import com.highspot.musicplaylistmanager.model.PlaylistStorageKey;
