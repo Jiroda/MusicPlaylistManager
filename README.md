@@ -10,8 +10,8 @@
 * In the case of update the song ids present in the change file will represent the final state of the playlist.
 * In order to avoid iterating through the Arraylist of playlists for each change to a playlist present in the changes file, 
   I have decided to go with a HashMap with the playlistId and UserId as a complex key and the List of songs as the value. 
-  This would cut short the complexity from O(N) to O(1) when it comes to fetching the songs based on userId and playlistId and 
-  another O(1) to remove and add/update values in the map.
+  This would cut short the complexity from O(N) to O(1) (N is the total number of playlists) when it comes to fetching the songs based on userId and playlistId 
+  and another O(1) to remove and add/update values in the map.
 * Once all the changes are applied, reconversion from hashmap to JSON will take O(K) complexity where K is the number of entries in the hashmap.
 
 ####  How to run the application
