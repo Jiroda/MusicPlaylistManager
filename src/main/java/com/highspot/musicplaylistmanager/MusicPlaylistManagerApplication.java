@@ -5,6 +5,10 @@ import java.util.List;
 
 import com.google.gson.JsonIOException;
 import com.google.gson.JsonSyntaxException;
+import com.highspot.musicplaylistmanager.exception.ExtractMusicDataFromFileException;
+import com.highspot.musicplaylistmanager.exception.ExtractPlaylistChangesFromFileException;
+import com.highspot.musicplaylistmanager.exception.InvalidPlaylistException;
+import com.highspot.musicplaylistmanager.exception.WriteToFileException;
 import com.highspot.musicplaylistmanager.model.MusicData;
 import com.highspot.musicplaylistmanager.model.PlayListChange;
 import com.highspot.musicplaylistmanager.model.Playlist;
@@ -24,6 +28,9 @@ public class MusicPlaylistManagerApplication implements CommandLineRunner {
 	@Autowired
 	FileUtility fileUtility;
 
+	@Autowired
+	MusicPlaylistManagerService musicPlaylistManagerService;
+
 	private static final Logger LOGGER = LoggerFactory.getLogger(MusicPlaylistManagerApplication.class);
 
 	public static void main(String[] args) {
@@ -31,7 +38,7 @@ public class MusicPlaylistManagerApplication implements CommandLineRunner {
 	}
 
 	@Override
-	public void run(String... args) throws Exception {
+	public void run(String... args){
 		long startTime = System.currentTimeMillis();
 		if (args.length != 3) {
 			LOGGER.error("The Application requires 3 non-optional command line arguments: [source json file path] , [change json file path] , [output json file path] ! Please retry executing the jar with the right parameters.");
@@ -66,7 +73,6 @@ public class MusicPlaylistManagerApplication implements CommandLineRunner {
 			LOGGER.info("Extracted change data from change file successfully.");
 
 			List<Playlist> newPlaylists = playlistChanges.getPlaylists();
-			MusicPlaylistManagerService musicPlaylistManagerService = new MusicPlaylistManagerService();
 			musicPlaylistManagerService.setMusicData(musicData);
 			int updatedCount = musicPlaylistManagerService.updatePlayLists(newPlaylists);
 
@@ -76,12 +82,20 @@ public class MusicPlaylistManagerApplication implements CommandLineRunner {
 			fileUtility.writeMusicDataToOutputFile(updatedMusicData, outputFilePath);
 
 			LOGGER.info("Created output JSON file with updated music data successfully.");
-			LOGGER.info("Completed successfully in " + (System.currentTimeMillis() - startTime) / 1000 + " sec(s)");
+			LOGGER.info("Completed successfully in " + (System.currentTimeMillis() - startTime) + " millisecond(s)");
 
 		} catch (JsonSyntaxException jsonSyntaxException) {
-			LOGGER.error("JSON syntax exception encountered! " + jsonSyntaxException.getMessage());
+			LOGGER.error("JSON syntax exception encountered! Exception: " + jsonSyntaxException.getMessage());
 		} catch (JsonIOException jsonIOException) {
-			LOGGER.error("JSON IO exception encountered! " + jsonIOException.getMessage());
+			LOGGER.error("JSON IO exception encountered! Exception: " + jsonIOException.getMessage());
+		} catch (ExtractMusicDataFromFileException extractMusicDataFromFileException) {
+			LOGGER.error("Unable to extract music data from source file! Exception: " + extractMusicDataFromFileException.getMessage());
+		} catch (ExtractPlaylistChangesFromFileException extractPlaylistChangesFromFileException) {
+			LOGGER.error("Unable to extract playlist changes from change file! Exception: " + extractPlaylistChangesFromFileException.getMessage());
+		} catch (WriteToFileException writeToFileException) {
+			LOGGER.error("Unable to write to the updated music data to the output file! Exception: " + writeToFileException.getMessage());
+		} catch (InvalidPlaylistException invalidPlaylistException) {
+			LOGGER.error("InvalidPlaylistException encountered! Exception: " + invalidPlaylistException.getMessage());
 		}
 	}
 
