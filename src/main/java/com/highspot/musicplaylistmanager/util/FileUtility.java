@@ -64,7 +64,7 @@ public class FileUtility {
 	 * @return PlayListChange
 	 * @throws ExtractPlaylistChangesFromFileException
 	 */
-	public PlayListChange extractPlaylistChangesFromChangesFile(String changesFilePath)
+	public PlayListChange extractPlaylistChangesFromChangeFile(String changesFilePath)
 			throws ExtractPlaylistChangesFromFileException {
 		PlayListChange playlistChanges = null;
 		try (Reader reader = new FileReader(changesFilePath)) {

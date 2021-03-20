@@ -77,10 +77,10 @@ public class FileUtilityTest {
     }
 
     @Test
-    public void testExtractPlaylistChangesFromChangesFile(){
+    public void testExtractPlaylistChangesFromChangeFile(){
         PlayListChange result;
         try {
-            result = fileUtility.extractPlaylistChangesFromChangesFile("src/main/resources/json/change.json");
+            result = fileUtility.extractPlaylistChangesFromChangeFile("src/main/resources/json/change.json");
             Assert.assertNotNull(result);
         } catch (ExtractPlaylistChangesFromFileException e) {
             Assert.assertFalse(true);
@@ -88,9 +88,9 @@ public class FileUtilityTest {
     }
 
     @Test
-    public void testExtractPlaylistChangesFromChangesFile_failure(){
+    public void testExtractPlaylistChangesFromChangeFile_failure(){
         try {
-            fileUtility.extractPlaylistChangesFromChangesFile("src/main/resources/json/change1.json");
+            fileUtility.extractPlaylistChangesFromChangeFile("src/main/resources/json/change1.json");
         } catch (ExtractPlaylistChangesFromFileException e) {
             Assert.assertTrue(true);
         }

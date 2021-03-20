@@ -53,7 +53,7 @@ public class MusicPlaylistManagerApplication implements CommandLineRunner {
 		LOGGER.info("Change file path validated successfully.");
 
 		String sourceFilePath = args[0];
-		String changesFilePath = args[1];
+		String changeFilePath = args[1];
 		String outputFilePath = args[2];
 
 		try {
@@ -61,8 +61,8 @@ public class MusicPlaylistManagerApplication implements CommandLineRunner {
 			MusicData musicData = fileUtility.extractMusicDataFromSourceFile(sourceFilePath);
 			LOGGER.info("Extracted music data from source file successfully.");
 
-			fileUtility.validateJSONSyntax(changesFilePath);
-			PlayListChange playlistChanges = fileUtility.extractPlaylistChangesFromChangesFile(changesFilePath);
+			fileUtility.validateJSONSyntax(changeFilePath);
+			PlayListChange playlistChanges = fileUtility.extractPlaylistChangesFromChangeFile(changeFilePath);
 			LOGGER.info("Extracted change data from change file successfully.");
 
 			List<Playlist> newPlaylists = playlistChanges.getPlaylists();
