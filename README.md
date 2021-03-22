@@ -41,16 +41,16 @@
 
   * I would favor availability and partition tolerance from the CAP theorem and settle with eventual consistency.
   * Horizontal scaling / sharding will be prefered as opposed to vertical scaling. 
-    Replicating the data across multiple hosts will can be considered inorder to ensure high availability.
+    Replicating the data across multiple hosts can be considered inorder to ensure high availability.
   * The ideal protocol would be HTTP and the CRUD operations on the playlists can be built as RESTful apis behind an API gateway which could then be load balanced.
   * REST resources will make access to data much more efficient, PUT POST and DELETE methods could be leveraged.
   * Each operation needs to be transactional to ensure the data is persisted correctly.
-  * The unique identifier in this change file will be the playlistIds which inturn could have 1 to many songIds. Each playlist id is associated to an userId
+  * The unique identifier in this change file is the playlistId which inturn could have 1 to many songIds. Each playlist id is associated to an userId
     Going by the userId and then by playlistId could make data retrieval and updates much faster.
   * Usage of a message queue such as Apache Kafka or RabbitMQ could be considered for a Publisher-Subscriber model in case of a stream of changes hitting the system.
   * Consistent hashing is a must in order to service requests in a distributed way.
 
 * If we need the application to be highly secure
  
-  * I would consider an AuthZ and AuthN for added security. OAuth is wellknow and we can whitelist clients based on client Ids to avoid unauthorized access.
+  * I would consider an AuthZ and AuthN for added security. OAuth is wellknown and we can whitelist clients based on client Ids to avoid unauthorized access.
     The above features could very well be built in the REST web service layer
