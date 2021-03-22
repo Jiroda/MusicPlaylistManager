@@ -52,5 +52,5 @@
 
 * If we need the application to be highly secure
  
-  * I would consider an AuthZ and AuthN for added security. OAuth is wellknown and we can whitelist clients based on client Ids to avoid unauthorized access.
+  * I would consider an AuthZ and AuthN for added security. OAuth is wellknown and we can whitelist clients based on client consumer Ids to avoid unauthorized access.
     The above features could very well be built in the REST web service layer
